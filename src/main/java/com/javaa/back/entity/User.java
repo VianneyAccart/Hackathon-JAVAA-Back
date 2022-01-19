@@ -32,7 +32,7 @@ public class User {
 		this.id = id;
 	}
 
-	public String getFirstName() {
+	public String getFirstName() { 
 		return firstName;
 	}
 

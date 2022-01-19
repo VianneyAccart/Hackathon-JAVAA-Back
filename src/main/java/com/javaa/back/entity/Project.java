@@ -25,12 +25,12 @@ public class Project {
 	@OneToMany(mappedBy = "project")
 	private List<ProjectImages> images ; 
 	
-	@OneToMany(mappedBy= "productProjectCategory")
+	@OneToMany(mappedBy= "productProjectCategories")
 	private List<Product> products;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private Long user_id;
+	@JoinColumn(name="user")
+	private User user;
 	
 	@ManyToMany
 	@JoinTable(name="project_professional",
@@ -39,9 +39,19 @@ public class Project {
 	private List<Professional> professionals = new ArrayList<>();
 	
 	//Getters&Setters
+	
+	
 
 	public Long getId() {
 		return id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setId(Long id) {
@@ -80,13 +90,7 @@ public class Project {
 		this.professionals = professionals;
 	}
 
-	public Long getUser_id() {
-		return user_id;
-	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
-	}
 	
 		
 
