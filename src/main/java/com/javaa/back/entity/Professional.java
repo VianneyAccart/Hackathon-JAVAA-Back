@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Professional {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	private Long id;
 
 	private String name;
