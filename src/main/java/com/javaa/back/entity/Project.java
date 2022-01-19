@@ -24,6 +24,7 @@ public class Project {
 	private Date createdAt;
 
 	@OneToMany(mappedBy = "project")
+
 	private List<ProjectImages> images;
 
 	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
@@ -36,15 +37,26 @@ public class Project {
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private ProjectCategory projectCategory;
-
+  
 	@ManyToMany
 	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
 	private List<Professional> professionals = new ArrayList<>();
+	
+	//Getters&Setters
+	
+	
 
-	// Getters&Setters
 
 	public Long getId() {
 		return id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setId(Long id) {
@@ -98,5 +110,6 @@ public class Project {
 	public void setProjectCategory(ProjectCategory projectCategory) {
 		this.projectCategory = projectCategory;
 	}
+
 
 }
