@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,26 +20,28 @@ public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private Date created_at;
-	
+
+	private Date createdAt;
+
 	@OneToMany(mappedBy = "project")
-	private List<ProjectImages> images ; 
-	
-	@OneToMany(mappedBy= "productProjectCategory")
-	private List<Product> products;
-	
+	private List<ProjectImages> images;
+
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+	private List<ProductProjectCategory> productProjectCategory = new ArrayList<>();
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private Long user_id;
-	
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "project_id")
+	private ProjectCategory projectCategory;
+
 	@ManyToMany
-	@JoinTable(name="project_professional",
-	joinColumns = @JoinColumn(name="project_id"),
-	inverseJoinColumns = @JoinColumn(name="professional_id"))
+	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
 	private List<Professional> professionals = new ArrayList<>();
-	
-	//Getters&Setters
+
+	// Getters&Setters
 
 	public Long getId() {
 		return id;
@@ -48,12 +51,12 @@ public class Project {
 		this.id = id;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public List<ProjectImages> getImages() {
@@ -64,12 +67,12 @@ public class Project {
 		this.images = images;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public List<ProductProjectCategory> getProductProjectCategory() {
+		return productProjectCategory;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setProductProjectCategory(List<ProductProjectCategory> productProjectCategory) {
+		this.productProjectCategory = productProjectCategory;
 	}
 
 	public List<Professional> getProfessionals() {
@@ -80,14 +83,20 @@ public class Project {
 		this.professionals = professionals;
 	}
 
-	public Long getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_id(Long user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-		
+
+	public ProjectCategory getProjectCategory() {
+		return projectCategory;
+	}
+
+	public void setProjectCategory(ProjectCategory projectCategory) {
+		this.projectCategory = projectCategory;
+	}
 
 }
