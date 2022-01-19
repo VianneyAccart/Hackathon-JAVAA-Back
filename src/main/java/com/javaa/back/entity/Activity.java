@@ -30,7 +30,6 @@ public class Activity {
 	private List<ProjectCategory> projectCategories = new ArrayList<>();
 
 	@OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
-	@JsonIgnore
 	private List<Professional> professionals = new ArrayList<>();
 
 	public Long getId() {
