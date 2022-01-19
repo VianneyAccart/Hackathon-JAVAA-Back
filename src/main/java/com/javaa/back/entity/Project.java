@@ -24,11 +24,7 @@ public class Project {
 	private Date createdAt;
 
 	@OneToMany(mappedBy = "project")
-
 	private List<ProjectImages> images ; 
-	
-	@OneToMany(mappedBy= "productProjectCategories")
-	private List<Product> products;
 	
 	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
 	private List<ProductProjectCategory> productProjectCategory = new ArrayList<>();
