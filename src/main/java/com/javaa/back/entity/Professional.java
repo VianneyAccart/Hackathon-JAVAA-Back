@@ -1,10 +1,16 @@
 package com.javaa.back.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,6 +32,11 @@ public class Professional {
 	@JoinColumn(name = "activity_id", nullable = false)
 	@JsonIgnore
 	private Activity activity;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "professional_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
+	@JsonIgnore
+	private List<Project> projects = new ArrayList<>();
 
 	public Long getId() {
 		return id;
