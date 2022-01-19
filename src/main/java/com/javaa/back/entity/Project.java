@@ -24,11 +24,6 @@ public class Project {
 	private Date createdAt;
 
 	@OneToMany(mappedBy = "project")
-<<<<<<< HEAD
-=======
-
-	private List<ProjectImages> images;
->>>>>>> 25acd44b6c8106a7ef0dce08a499a71e8d0decf9
 
 	private List<ProjectImages> images ; 
 	
@@ -45,31 +40,15 @@ public class Project {
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private ProjectCategory projectCategory;
-<<<<<<< HEAD
 
 
 	@ManyToMany
 	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
 	private List<Professional> professionals = new ArrayList<>();
 
-=======
-  
-	@ManyToMany
-	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
-	private List<Professional> professionals = new ArrayList<>();
->>>>>>> 25acd44b6c8106a7ef0dce08a499a71e8d0decf9
 	
 	//Getters&Setters
 	
-	
-
-<<<<<<< HEAD
-
-	// Getters&Setters
-
-=======
->>>>>>> 25acd44b6c8106a7ef0dce08a499a71e8d0decf9
-
 	public Long getId() {
 		return id;
 	}
@@ -118,12 +97,6 @@ public class Project {
 		this.professionals = professionals;
 	}
 
-<<<<<<< HEAD
-=======
-	public User getUser() {
-		return user;
-	}
->>>>>>> 25acd44b6c8106a7ef0dce08a499a71e8d0decf9
 
 
 
@@ -134,9 +107,5 @@ public class Project {
 	public void setProjectCategory(ProjectCategory projectCategory) {
 		this.projectCategory = projectCategory;
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 25acd44b6c8106a7ef0dce08a499a71e8d0decf9
 
 }

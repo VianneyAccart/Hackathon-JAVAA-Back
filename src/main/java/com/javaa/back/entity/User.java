@@ -20,7 +20,7 @@ public class User {
 	private String lastName;
 	
 	@OneToMany(mappedBy="user")
-	private List<Project> projects;
+	private List<Project> projects; 
 	
 	//Getters &Setters
 
