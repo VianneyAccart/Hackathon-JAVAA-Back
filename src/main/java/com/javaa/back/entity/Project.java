@@ -25,8 +25,11 @@ public class Project {
 
 	@OneToMany(mappedBy = "project")
 
-	private List<ProjectImages> images;
-
+	private List<ProjectImages> images ; 
+	
+	@OneToMany(mappedBy= "productProjectCategories")
+	private List<Product> products;
+	
 	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
 	private List<ProductProjectCategory> productProjectCategory = new ArrayList<>();
 
@@ -37,16 +40,15 @@ public class Project {
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private ProjectCategory projectCategory;
-  
+
+
 	@ManyToMany
 	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
 	private List<Professional> professionals = new ArrayList<>();
+
 	
 	//Getters&Setters
 	
-	
-
-
 	public Long getId() {
 		return id;
 	}
@@ -95,13 +97,8 @@ public class Project {
 		this.professionals = professionals;
 	}
 
-	public User getUser() {
-		return user;
-	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 
 	public ProjectCategory getProjectCategory() {
 		return projectCategory;
@@ -110,6 +107,5 @@ public class Project {
 	public void setProjectCategory(ProjectCategory projectCategory) {
 		this.projectCategory = projectCategory;
 	}
-
 
 }
