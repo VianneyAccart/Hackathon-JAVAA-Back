@@ -32,7 +32,7 @@ public class Professional {
 	@JoinColumn(name = "activity_id", nullable = false)
 	@JsonIgnore
 	private Activity activity;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "professional_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	@JsonIgnore
@@ -72,6 +72,14 @@ public class Professional {
 
 	public void setActivity(Activity activity) {
 		this.activity = activity;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 }
