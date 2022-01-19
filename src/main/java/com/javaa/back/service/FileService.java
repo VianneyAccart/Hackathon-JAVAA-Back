@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
-	private String locationFile = "/back/src/main/resources/static/img";
+	private String locationFile = "C:\\Users\\AdN\\Documents\\DevWeb\\hackhaton2\\back\\Hackathon-JAVAA-Back\\src\\main\\resources\\static\\img\\";
 
 	private final Path root = Paths.get(locationFile);
 
