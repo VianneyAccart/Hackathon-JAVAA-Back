@@ -22,8 +22,8 @@ public class ProductProjectCategory {
 	private Product product;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "project_category_id")
-	private ProjectCategory projectCategory;
+	@JoinColumn(name = "project_id")
+	private Project project;
 
 	private Boolean isMustHave;
 
@@ -39,12 +39,12 @@ public class ProductProjectCategory {
 		this.product = product;
 	}
 
-	public ProjectCategory getProjectCategory() {
-		return projectCategory;
+	public Project getProject() {
+		return project;
 	}
 
-	public void setProjectCategory(ProjectCategory projectCategory) {
-		this.projectCategory = projectCategory;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public Boolean getIsMustHave() {

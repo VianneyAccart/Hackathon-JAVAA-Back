@@ -29,7 +29,7 @@ public class Product {
 	private String url;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	private List<ProductProjectCategory> productProjectCategories = new ArrayList<>();
+	private List<ProductProjectCategory> productProjectCategory = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -67,12 +67,14 @@ public class Product {
 		this.url = url;
 	}
 
-	public List<ProductProjectCategory> getProductProjectCategories() {
-		return productProjectCategories;
+	public List<ProductProjectCategory> getProductProjectCategory() {
+		return productProjectCategory;
 	}
 
-	public void setProductProjectCategories(List<ProductProjectCategory> productProjectCategories) {
-		this.productProjectCategories = productProjectCategories;
+	public void setProductProjectCategory(List<ProductProjectCategory> productProjectCategory) {
+		this.productProjectCategory = productProjectCategory;
 	}
+
+
 
 }
