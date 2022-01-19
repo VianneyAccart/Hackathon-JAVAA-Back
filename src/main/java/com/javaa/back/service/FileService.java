@@ -16,11 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
-	private String locationFile = "C:\\Users\\AdN\\Documents\\DevWeb\\hackhaton2\\back\\Hackathon-JAVAA-Back\\src\\main\\resources\\static\\img\\";
+	private String locationFile = "/home/anthony/eclipse-workspace/hackathon/back/src/main/resources/static/img/";
 
 	private final Path root = Paths.get(locationFile);
 
-	public void uploadFile(MultipartFile file) throws IllegalStateException, IOException {
+	public String uploadFile(MultipartFile file) throws IllegalStateException, IOException {
 
 		String extension = "";
 		String fileName = file.getOriginalFilename();
@@ -36,11 +36,13 @@ public class FileService {
 				throw new IOException("File extension must be png, jpg, jpeg or svg");
 			} else {
 				do {
-					fileName = UUID.randomUUID().toString().replace("-", "");
+					fileName = UUID.randomUUID().toString().replace("-", "") + "." + fileName.substring(index + 1);
 					Files.copy(file.getInputStream(), this.root.resolve(fileName));
+					return fileName;
 				} while (!fileToTransfer.exists() && !fileToTransfer.isDirectory());
 			}
 		}
+		return fileName;
 	}
 
 	public Resource load(String filename) throws IOException {
