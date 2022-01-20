@@ -17,9 +17,22 @@ public class ProjectCategory {
 	private Long id;
 
 	private String name;
+	
+	@OneToMany(mappedBy = "projectCategory")
+    private List<Blog> blogs;
 
 	@OneToMany(mappedBy = "projectCategory")
 	private List<Project> projects;
+	
+	
+
+	public List<Blog> getBlogs() {
+		return blogs;
+	}
+
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
+	}
 
 	public Long getId() {
 		return id;
