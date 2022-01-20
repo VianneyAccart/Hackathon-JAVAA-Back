@@ -24,34 +24,33 @@ import com.javaa.back.service.BlogService;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/blogs")
 public class BlogController {
-	
+
 	@Autowired
 	BlogService blogService;
-	
-	//Create 
+
+	// Create
 	@PostMapping
-	public Blog save(@Valid BlogDto blogDto, @RequestParam MultipartFile file) throws IllegalStateException, IOException {
+	public Blog save(@Valid BlogDto blogDto, @RequestParam MultipartFile file)
+			throws IllegalStateException, IOException {
 		return blogService.save(blogDto, file);
-	} 
-	
-	//Delete
+	}
+
+	// Delete
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable(required=true)Long id) {
+	public void delete(@PathVariable(required = true) Long id) {
 		blogService.delete(id);
 	}
-	
-	//Get one
+
+	// Get one
 	@GetMapping("/{id}")
-	public Blog getOne(@PathVariable(required=true) Long id){
+	public Blog getOne(@PathVariable(required = true) Long id) {
 		return blogService.getOne(id);
 	}
-	
-	//Get All
+
+	// Get All
 	@GetMapping
-	public List<Blog> findAll(){
+	public List<Blog> findAll() {
 		return blogService.findAll();
 	}
-	
-	
- 
+
 }

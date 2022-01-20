@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity 
 public class ProjectImages {
 	
@@ -17,6 +19,7 @@ public class ProjectImages {
 	private String name;
 	@ManyToOne
 	@JoinColumn(name="projects_id")
+	@JsonIgnore
 	private Project project;
 
 	public Project getProject() {

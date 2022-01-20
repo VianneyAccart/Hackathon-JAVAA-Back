@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.javaa.back.dto.BlogDto;
-import com.javaa.back.dto.ProjectCategoryDto;
 import com.javaa.back.entity.Blog;
 import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.repository.BlogRepository;
