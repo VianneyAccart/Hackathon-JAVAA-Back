@@ -8,17 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity 
+@Entity
 
 public class ProjectCategory {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String name;
-	
-	@OneToMany(mappedBy="projectCategory")
+
+	@OneToMany(mappedBy = "projectCategory")
 	private List<Project> projects;
 
 	public Long getId() {
@@ -36,7 +36,13 @@ public class ProjectCategory {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
 
 }

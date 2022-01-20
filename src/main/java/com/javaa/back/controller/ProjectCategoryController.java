@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.javaa.back.dto.BudgetDto;
 import com.javaa.back.dto.ProjectCategoryDto;
+import com.javaa.back.entity.Project;
 import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.service.ProjectCategoryService;
 
@@ -33,6 +35,11 @@ public class ProjectCategoryController {
 	@GetMapping("/{id}")
 	public ProjectCategory findOne(@PathVariable Long id) {
 		return categoryService.findOne(id);
+	}
+	
+	@PostMapping("/budget")
+	public List<Project> findByBudget(@Valid BudgetDto budgetDto) {
+		return categoryService.findByBudget(budgetDto);
 	}
 	
 	@PostMapping
