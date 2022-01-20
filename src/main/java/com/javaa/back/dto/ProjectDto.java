@@ -17,6 +17,7 @@ public class ProjectDto {
 	private Long[] professionalsId;
 	@Size(min = 1)
 	private Long[] productsId;
+	//list de productDto
 	@NotNull
 	private Boolean isMustHave;
 
