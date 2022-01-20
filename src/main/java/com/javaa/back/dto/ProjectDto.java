@@ -16,6 +16,7 @@ public class ProjectDto {
 	@Size(min = 1)
 	private Long[] professionalsId;
 	@Size(min = 1)
+
 	private ProductIsMustHaveDto[] productIsMustHaveDtos;
 
 	public Date getCreatedAt() {
