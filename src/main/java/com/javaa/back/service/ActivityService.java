@@ -11,7 +11,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.javaa.back.dto.ActivityDto;
 import com.javaa.back.entity.Activity;
-import com.javaa.back.entity.ProductProjectCategory;
 import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.repository.ActivityRepository;
 import com.javaa.back.repository.ProjectCategoryRepository;
