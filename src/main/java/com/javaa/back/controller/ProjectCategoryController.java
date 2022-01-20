@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.javaa.back.dto.BudgetDto;
 import com.javaa.back.dto.ProjectCategoryDto;
-import com.javaa.back.entity.Project;
 import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.service.ProjectCategoryService;
 
@@ -38,7 +37,7 @@ public class ProjectCategoryController {
 	}
 	
 	@PostMapping("/budget")
-	public List<Project> findByBudget(@Valid BudgetDto budgetDto) {
+	public ProjectCategory findByBudget(@Valid BudgetDto budgetDto) {
 		return categoryService.findByBudget(budgetDto);
 	}
 	
