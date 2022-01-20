@@ -24,6 +24,7 @@ public class Blog {
 
 	private String url;
 
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "project_category_id", nullable = false)
 	@JsonIgnore

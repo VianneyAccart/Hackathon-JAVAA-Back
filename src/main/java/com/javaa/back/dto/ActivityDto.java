@@ -13,6 +13,16 @@ public class ActivityDto {
 	public String getName() {
 		return name;
 	}
+	@Size (min=1)
+	private Long[] categoryIds;
+
+	public Long[] getCategoryIds() {
+		return categoryIds;
+	}
+
+	public void setCategoryIds(Long[] categoryIds) {
+		this.categoryIds = categoryIds;
+	}
 
 	public void setName(String name) {
 		this.name = name;

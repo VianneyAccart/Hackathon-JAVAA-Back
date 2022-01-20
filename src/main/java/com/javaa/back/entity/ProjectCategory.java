@@ -22,12 +22,14 @@ public class ProjectCategory {
 	private Long id;
 
 	private String name;
+	
+	@OneToMany(mappedBy = "projectCategory")
+    private List<Blog> blogs;
 
 	@OneToMany(mappedBy = "projectCategory")
 	private List<Project> projects;
-
-	@OneToMany(mappedBy = "projectCategory")
-	private List<Blog> blogs;
+	
+	
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "activity_project_category", joinColumns = @JoinColumn(name ="project_category_id"), inverseJoinColumns = @JoinColumn(name = "activity_id"))
