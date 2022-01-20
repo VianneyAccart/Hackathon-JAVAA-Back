@@ -29,7 +29,6 @@ public class Professional {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "activity_id", nullable = false)
-	@JsonIgnore
 	private Activity activity;
 
 	@ManyToMany(fetch = FetchType.LAZY)
