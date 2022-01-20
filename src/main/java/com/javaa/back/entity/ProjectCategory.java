@@ -29,8 +29,9 @@ public class ProjectCategory {
 	@OneToMany(mappedBy = "projectCategory")
 	private List<Project> projects;
 	
+	@OneToMany(mappedBy = "projectCategory")
+	private List<Product> products;
 	
-
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "activity_project_category", joinColumns = @JoinColumn(name ="project_category_id"), inverseJoinColumns = @JoinColumn(name = "activity_id"))
 	private List<Activity> activities = new ArrayList<>();

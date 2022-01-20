@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,6 +30,13 @@ public class Product {
 	private String image;
 
 	private String url;
+
+	private Boolean isMustHave;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "project_category_id")
+	@JsonIgnore
+	private ProjectCategory projectCategory;
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -77,6 +86,20 @@ public class Product {
 		this.productProjectCategory = productProjectCategory;
 	}
 
+	public Boolean getIsMustHave() {
+		return isMustHave;
+	}
 
+	public void setIsMustHave(Boolean isMustHave) {
+		this.isMustHave = isMustHave;
+	}
+
+	public ProjectCategory getProjectCategory() {
+		return projectCategory;
+	}
+
+	public void setProjectCategory(ProjectCategory projectCategory) {
+		this.projectCategory = projectCategory;
+	}
 
 }

@@ -15,6 +15,12 @@ public class ProductDto {
 	private Double price;
 
 	@NotNull
+	private Boolean isMustHave;
+
+	@NotNull
+	private Long projectCategoryId;
+
+	@NotNull
 	@NotBlank
 	@Size(min = 2, max = 255)
 	private String url;
@@ -41,6 +47,22 @@ public class ProductDto {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Boolean getIsMustHave() {
+		return isMustHave;
+	}
+
+	public void setIsMustHave(Boolean isMustHave) {
+		this.isMustHave = isMustHave;
+	}
+
+	public Long getProjectCategoryId() {
+		return projectCategoryId;
+	}
+
+	public void setProjectCategoryId(Long projectCategoryId) {
+		this.projectCategoryId = projectCategoryId;
 	}
 
 }

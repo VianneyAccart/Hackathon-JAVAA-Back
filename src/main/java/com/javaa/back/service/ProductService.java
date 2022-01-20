@@ -12,13 +12,18 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.javaa.back.dto.ProductDto;
 import com.javaa.back.entity.Product;
+import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.repository.ProductRepository;
+import com.javaa.back.repository.ProjectCategoryRepository;
 
 @Service
 public class ProductService {
 
 	@Autowired
 	ProductRepository productRepository;
+
+	@Autowired
+	ProjectCategoryRepository projectCategoryRepository;
 
 	@Autowired
 	FileService fileService;
@@ -42,7 +47,14 @@ public class ProductService {
 		product.setPrice(productDto.getPrice());
 		product.setTitle(productDto.getTitle());
 		product.setUrl(productDto.getUrl());
-		return productRepository.save(product);
+		product.setIsMustHave(productDto.getIsMustHave());
+		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository
+				.findById(productDto.getProjectCategoryId());
+		if (optProjectCategory.isPresent()) {
+			product.setProjectCategory(optProjectCategory.get());
+			return productRepository.save(product);
+		} else
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	}
 
 	public void delete(Long id) throws IOException {
