@@ -34,7 +34,7 @@ public class Project {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "project_id")
+	@JoinColumn(name = "project_category_id")
 	private ProjectCategory projectCategory;
 
 

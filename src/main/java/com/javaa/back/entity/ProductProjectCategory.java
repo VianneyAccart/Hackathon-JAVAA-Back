@@ -17,12 +17,13 @@ public class ProductProjectCategory {
 	@JsonIgnore
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "project_id")
+	@JsonIgnore
 	private Project project;
 
 	private Boolean isMustHave;
