@@ -20,7 +20,7 @@ public class ProjectCategoryService {
 
 	@Autowired
 	ProjectCategoryRepository projectCategoryRepository;
-	
+
 	@Autowired
 	ProjectRepository projectRepository;
 
@@ -35,13 +35,13 @@ public class ProjectCategoryService {
 		} else
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	}
-	
+
 	public ProjectCategory save(ProjectCategoryDto projectCategoryDto) {
 		ProjectCategory projectCategory = new ProjectCategory();
 		projectCategory.setName(projectCategoryDto.getName());
 		return projectCategoryRepository.save(projectCategory);
 	}
-	
+
 	public void delete(Long id) {
 		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository.findById(id);
 		if (optProjectCategory.isPresent()) {
@@ -49,13 +49,19 @@ public class ProjectCategoryService {
 		} else
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	}
-	
-	public List<Project> findByBudget(BudgetDto budgetDto) {
-		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository.findById(budgetDto.getProjectCategoryId());
+
+	public ProjectCategory findByBudget(BudgetDto budgetDto) {
+		List<Project> optProject = projectRepository.findAllByProjectCategoryIdAndBudgetBetween(
+				budgetDto.getProjectCategoryId(), budgetDto.getBudgetMin(), budgetDto.getBudgetMax());
+		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository
+				.findById(budgetDto.getProjectCategoryId());
 		if (optProjectCategory.isPresent()) {
-			return projectRepository.findAllByProjectCategoryIdAndBudgetBetween(budgetDto.getProjectCategoryId(), budgetDto.getBudgetMin(), budgetDto.getBudgetMax());
+			ProjectCategory projectCategory = optProjectCategory.get();
+			projectCategory.setProjects(optProject);
+			return projectCategory;
 		} else
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
 	}
 
 }
