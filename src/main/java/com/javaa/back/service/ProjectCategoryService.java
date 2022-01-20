@@ -8,15 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.javaa.back.dto.BudgetDto;
 import com.javaa.back.dto.ProjectCategoryDto;
+import com.javaa.back.entity.Project;
 import com.javaa.back.entity.ProjectCategory;
 import com.javaa.back.repository.ProjectCategoryRepository;
+import com.javaa.back.repository.ProjectRepository;
 
 @Service
 public class ProjectCategoryService {
 
 	@Autowired
 	ProjectCategoryRepository projectCategoryRepository;
+	
+	@Autowired
+	ProjectRepository projectRepository;
 
 	public List<ProjectCategory> findAll() {
 		return projectCategoryRepository.findAll();
@@ -40,6 +46,14 @@ public class ProjectCategoryService {
 		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository.findById(id);
 		if (optProjectCategory.isPresent()) {
 			projectCategoryRepository.deleteById(id);
+		} else
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+	}
+	
+	public List<Project> findByBudget(BudgetDto budgetDto) {
+		Optional<ProjectCategory> optProjectCategory = projectCategoryRepository.findById(budgetDto.getProjectCategoryId());
+		if (optProjectCategory.isPresent()) {
+			return projectRepository.findAllByProjectCategoryIdAndBudgetBetween(budgetDto.getProjectCategoryId(), budgetDto.getBudgetMin(), budgetDto.getBudgetMax());
 		} else
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 	}

@@ -98,6 +98,7 @@ public class ProjectService {
 					projectImages.setProject(newProject);
 					projectImagesRepository.save(projectImages);
 				}
+				Double budget = 0.0;
 				for (Long id : projectDto.getProductsId()) {
 					Optional<Product> optProduct = productRepository.findById(id);
 					if (optProduct.isPresent()) {
@@ -106,11 +107,19 @@ public class ProjectService {
 						productProjectCategory.setProduct(product);
 						productProjectCategory.setIsMustHave(projectDto.getIsMustHave());
 						productProjectCategory.setProject(newProject);
+						budget += product.getPrice();
 						productProjectCategoryRepository.save(productProjectCategory);
 					} else
 						throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no pro");
 				}
-				return newProject;
+				Optional<Project> optProjectToUpdateBudget = projectRepository.findById(newProject.getId());
+				if (optProjectToUpdateBudget.isPresent()) {
+					Project projectToUpdateBudget = optProjectToUpdateBudget.get();
+					projectToUpdateBudget.setBudget(budget);
+					projectRepository.save(projectToUpdateBudget);
+					return projectToUpdateBudget;
+				} else
+					throw new ResponseStatusException(HttpStatus.NOT_FOUND, "not such project");
 			} else
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no category");
 

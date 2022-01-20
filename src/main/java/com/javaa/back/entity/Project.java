@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Project {
 	@Id
@@ -24,8 +26,8 @@ public class Project {
 	private Date createdAt;
 
 	@OneToMany(mappedBy = "project")
-	private List<ProjectImages> images ; 
-	
+	private List<ProjectImages> images;
+
 	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
 	private List<ProductProjectCategory> productProjectCategory = new ArrayList<>();
 
@@ -35,16 +37,17 @@ public class Project {
 
 	@ManyToOne
 	@JoinColumn(name = "project_category_id")
+	@JsonIgnore
 	private ProjectCategory projectCategory;
-
 
 	@ManyToMany
 	@JoinTable(name = "project_professional", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "professional_id"))
 	private List<Professional> professionals = new ArrayList<>();
 
-	
-	//Getters&Setters
-	
+	private Double budget;
+
+	// Getters&Setters
+
 	public Long getId() {
 		return id;
 	}
@@ -93,15 +96,20 @@ public class Project {
 		this.professionals = professionals;
 	}
 
-
-
-
 	public ProjectCategory getProjectCategory() {
 		return projectCategory;
 	}
 
 	public void setProjectCategory(ProjectCategory projectCategory) {
 		this.projectCategory = projectCategory;
+	}
+
+	public Double getBudget() {
+		return budget;
+	}
+
+	public void setBudget(Double budget) {
+		this.budget = budget;
 	}
 
 }
