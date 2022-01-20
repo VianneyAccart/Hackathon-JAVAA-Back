@@ -101,14 +101,15 @@ public class ProjectService {
 				}
 
 				Double budget = 0.0;
-				for(ProductIsMustHaveDto product: projectDto.getProductIsMustHaveDtos()) {
-					Optional<Product> optProduct = productRepository.findById(product.getProductId());
+				
+				for(ProductIsMustHaveDto productIsMustHaveDto: projectDto.getProductIsMustHaveDtos()) {
+					Optional<Product> optProduct = productRepository.findById(productIsMustHaveDto.getProductId());
 					if (optProduct.isPresent()) {
 						Product prod = optProduct.get();
 						ProductProjectCategory productProjectCategory = new ProductProjectCategory();
 						productProjectCategory.setProduct(prod);
 					
-						productProjectCategory.setIsMustHave(product.getIsMustHave());
+						productProjectCategory.setIsMustHave(productIsMustHaveDto.getIsMustHave());
 						productProjectCategory.setProject(newProject);
 						budget += prod.getPrice(); 
 						productProjectCategoryRepository.save(productProjectCategory);
