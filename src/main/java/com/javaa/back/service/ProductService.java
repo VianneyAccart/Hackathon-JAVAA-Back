@@ -31,6 +31,10 @@ public class ProductService {
 	public List<Product> findAll() {
 		return productRepository.findAll();
 	}
+	
+	public List<Product> findAllByUnavoidable() {
+		return productRepository.findAllByIsMustHave(true);
+	}
 
 	public Product findOne(Long id) {
 		Optional<Product> optProduct = productRepository.findById(id);

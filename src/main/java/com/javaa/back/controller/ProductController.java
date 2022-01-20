@@ -38,6 +38,11 @@ public class ProductController {
 		return productService.findOne(id);
 	}
 	
+	@GetMapping("/unavoidable")
+	public List<Product> findAllByUnavoidable() {
+		return productService.findAllByUnavoidable();
+	}
+	
 	@PostMapping(consumes = { "multipart/form-data" })
 	public Product save(@Valid ProductDto productDto, @RequestParam MultipartFile file) throws IllegalStateException, IOException {
 		return productService.save(productDto, file);
