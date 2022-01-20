@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.javaa.back.dto.ProductIsMustHaveDto;
 import com.javaa.back.dto.ProjectDto;
 import com.javaa.back.entity.Product;
 import com.javaa.back.entity.ProductProjectCategory;
@@ -98,20 +99,24 @@ public class ProjectService {
 					projectImages.setProject(newProject);
 					projectImagesRepository.save(projectImages);
 				}
+
 				Double budget = 0.0;
-				for (Long id : projectDto.getProductsId()) {
-					Optional<Product> optProduct = productRepository.findById(id);
+				
+				for(ProductIsMustHaveDto productIsMustHaveDto: projectDto.getProductIsMustHaveDtos()) {
+					Optional<Product> optProduct = productRepository.findById(productIsMustHaveDto.getProductId());
 					if (optProduct.isPresent()) {
-						Product product = optProduct.get();
+						Product prod = optProduct.get();
 						ProductProjectCategory productProjectCategory = new ProductProjectCategory();
-						productProjectCategory.setProduct(product);
-						productProjectCategory.setIsMustHave(projectDto.getIsMustHave());
+						productProjectCategory.setProduct(prod);
+					
+						productProjectCategory.setIsMustHave(productIsMustHaveDto.getIsMustHave());
 						productProjectCategory.setProject(newProject);
-						budget += product.getPrice();
+						budget += prod.getPrice(); 
 						productProjectCategoryRepository.save(productProjectCategory);
 					} else
-						throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no pro");
+						throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no project found");
 				}
+
 				Optional<Project> optProjectToUpdateBudget = projectRepository.findById(newProject.getId());
 				if (optProjectToUpdateBudget.isPresent()) {
 					Project projectToUpdateBudget = optProjectToUpdateBudget.get();

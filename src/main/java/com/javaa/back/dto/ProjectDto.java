@@ -16,10 +16,8 @@ public class ProjectDto {
 	@Size(min = 1)
 	private Long[] professionalsId;
 	@Size(min = 1)
-	private Long[] productsId;
-	//list de productDto
-	@NotNull
-	private Boolean isMustHave;
+
+	private ProductIsMustHaveDto[] productIsMustHaveDtos;
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -61,20 +59,12 @@ public class ProjectDto {
 		this.professionalsId = professionalsId;
 	}
 
-	public Long[] getProductsId() {
-		return productsId;
+	public ProductIsMustHaveDto[] getProductIsMustHaveDtos() {
+		return productIsMustHaveDtos;
 	}
 
-	public void setProductsId(Long[] productsId) {
-		this.productsId = productsId;
-	}
-
-	public Boolean getIsMustHave() {
-		return isMustHave;
-	}
-
-	public void setIsMustHave(Boolean isMustHave) {
-		this.isMustHave = isMustHave;
+	public void setProductIsMustHaveDtos(ProductIsMustHaveDto[] productIsMustHaveDtos) {
+		this.productIsMustHaveDtos = productIsMustHaveDtos;
 	}
 
 }
